@@ -1,23 +1,23 @@
 version: '2'
 
 services:
-  # api:
-  #   build: .
-  #   ports:
-  #     - "5000:5000"
-  #   volumes:
-  #     - "./src:/src"
-  #   tty: true
-  #   environment:
-  #     TZ: Asia/Tokyo
-  #     FLASK_APP: run.py
-  #     FLASK_ENV: development
-  #   command: flask run -h 0.0.0.0
+  api:
+    build: .
+    ports:
+      - "5001:5001"
+    volumes:
+      - "./src:/src"
+    tty: true
+    environment:
+      TZ: Asia/Tokyo
+      FLASK_APP: run.py
+      FLASK_ENV: development
+    command: flask run -h 0.0.0.0
 
   db:
     build: ./mysql/
     volumes:
-      - ./mysql/mysql_data:/var/lib/mysql # データの永続化
-      - ./mysql/sqls:/docker-entrypoint-initdb.d # 初期データ投入
+      - ./mysql/mysql_data:/var/lib/mysql
+      - ./mysql/sqls:/docker-entrypoint-initdb.d
     environment:
-      - MYSQL_ROOT_PASSWORD=好きなパスワード #rootパスワードの設定
+      - MYSQL_ROOT_PASSWORD=password
